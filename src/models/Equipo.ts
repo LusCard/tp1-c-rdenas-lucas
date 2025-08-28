@@ -1,13 +1,16 @@
 import type { ICompetidor } from "../interfaces/ICompetidor";
 import type { Jugador } from "./Jugador";
+import { Deporte } from "./Deporte";
 
 export class Equipo implements ICompetidor {
   nombre: string;
   private integrantes: Jugador[];
+  private deporte: Deporte;
 
-  constructor(nombre: string) {
+  constructor(nombre: string, deporte: Deporte) {
     this.nombre = nombre;
     this.integrantes = [];
+    this.deporte = deporte;
   }
 
   agregarJugador(jugador: Jugador) {
@@ -20,5 +23,9 @@ export class Equipo implements ICompetidor {
 
   get cantidad(): number {
     return this.integrantes.length;
+  }
+
+  get deporteDeEquipo(): Deporte {
+    return this.deporte;
   }
 }
