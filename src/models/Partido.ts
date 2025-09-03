@@ -3,7 +3,7 @@ import { Deporte } from "./Deporte";
 import { Equipo } from "./Equipo";
 
 export class Partido {
-  private id: string;
+  public id: string;
   private deporte: Deporte;
   private equipoLocal: Equipo;
   private equipoVisitante: Equipo;
@@ -31,7 +31,7 @@ export class Partido {
     this.resultado = null;
   }
 
-  public setResultado(golesLocal: number, golesVisitante: number): void {
+  private setResultado(golesLocal: number, golesVisitante: number): void {
     this.resultado = new Resultado(golesLocal, golesVisitante);
   }
 
@@ -44,10 +44,10 @@ export class Partido {
 
   public getDetallesPartido(): string {
     return `Partido: ${this.id}
-Deporte: ${this.deporte}
-Equipo Local: ${this.equipoLocal.nombre}
-Equipo Visitante: ${this.equipoVisitante.nombre}
-Resultado: ${
+    Deporte: ${this.deporte}
+    Equipo Local: ${this.equipoLocal.nombre}
+    Equipo Visitante: ${this.equipoVisitante.nombre}
+    Resultado: ${
       this.resultado
         ? this.resultado.toString()
         : "El partido aún no ha terminado."
