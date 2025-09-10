@@ -1,6 +1,7 @@
+import type { IIdentificable } from "../interfaces/IIdentificable";
 import { Partido } from "./Partido";
 
-export class Torneo {
+export class Torneo implements IIdentificable {
   public id: string;
   public nombre: string;
   public partidos: Partido[];
@@ -19,6 +20,9 @@ export class Torneo {
   }
 
   public buscarPartido(id: string): Partido | undefined {
-    return this.partidos.find((partido) => partido.id === id);
+    return this.partidos.find((p) => p.id === id);
+  }
+  public mostrarDetalles(): string {
+    return `Torneo: ${this.nombre} (ID: ${this.id})`;
   }
 }

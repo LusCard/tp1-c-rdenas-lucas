@@ -13,12 +13,17 @@ export class Equipo implements ICompetidor {
     this.deporte = deporte;
   }
 
-  agregarJugador(jugador: Jugador) {
+  agregarJugador(jugador: Jugador): boolean {
+    if (this.integrantes.some((j) => j.id === jugador.id)) {
+      console.log(`Jugador con id ${jugador.id} ya existe en el equipo`);
+      return false;
+    }
     this.integrantes.push(jugador);
+    return true;
   }
 
   listarIntegrantes(): string[] {
-    return this.integrantes.map((jugador) => jugador.nombre);
+    return this.integrantes.map((jugador) => jugador.mostrarDatos());
   }
 
   get cantidad(): number {
@@ -27,5 +32,8 @@ export class Equipo implements ICompetidor {
 
   get deporteDeEquipo(): Deporte {
     return this.deporte;
+  }
+  public tieneJugador(id: string): boolean {
+    return this.integrantes.some((j) => j.id === id);
   }
 }

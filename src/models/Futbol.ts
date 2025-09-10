@@ -3,9 +3,15 @@ import type { Equipo } from "./Equipo";
 
 export class Futbol extends Deporte {
   constructor() {
-    super("Fulbo", 11);
+    super("Futbol", 11);
   }
   validar(equipo: Equipo): boolean {
-    return equipo.cantidad <= this.maxPorEquipo;
+    if (equipo.cantidad !== this.maxPorEquipo) {
+      console.log(
+        `${equipo.nombre} no es valido para este deporte ${this.nombre}.Se requieren exactamente ${this.maxPorEquipo} jugadores.`
+      );
+      return false;
+    }
+    return true;
   }
 }
